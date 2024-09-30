@@ -9,7 +9,7 @@ fi
 
 pattern="$1"
 
-go test -race -v -count=1 -run "$pattern" ./... | \
+docker compose exec quiz-app go test -race -v -count=1 -run "$pattern" ./... | \
 sed 's/===\s\+RUN/=== \o033[33mRUN\o033[0m/g' | \
 sed 's/===/\o033[36m&\o033[0m/g' | \
 sed 's/---/\o033[35m&\o033[0m/g' | \

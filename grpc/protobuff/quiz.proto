@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package jamm3e3333.quiz.api.v1;
+
+option go_package = "github.com/jamm3e3333/quiz-app/proto";
+
+service QuizService {
+	rpc ListQuestions(ListQuestionsRequest) returns (ListQuestionsResponse);
+	rpc SubmitQuiz(SubmitQuizRequest) returns (SubmitQuizResponse);
+}
+
+message ListQuestionsRequest {}
+
+message ListQuestionsResponse {
+	repeated ListQuestion questions = 1;
+}
+
+message ListQuestion {
+	int32 id = 1;
+	string question = 2;
+	repeated string answers = 3;
+}
+
+message SubmitQuizRequest {
+	repeated SubmittedAnswer answers = 1;
+}
+
+message SubmittedAnswer {
+	int32 question_id = 1;
+	int32 answer_index = 2;
+}
+
+message SubmitQuizResponse {
+	float success_rate_percentage = 1;
+	int32 correct_answers = 2;
+	int32 total_questions = 3;
+}

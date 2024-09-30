@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  quiz-app:
+    init: true
+    container_name: quiz-app
+    build:
+      context: .
+      target: development
+      args:
+        PROJECT_ROOT: "/go/src/github.com/jamm3e3333/quiz-app"
+    ports:
+      - "8088:8088"
+    volumes:
+      - ".:/go/src/github.com/jamm3e3333/quiz-app/:cached"
+    environment:
+      GRPC_PORT: 8088
+      GRPC_USE_REFLECTION: true
+      LOG_LEVEL: info
+      LOG_USE_DEVEL_MODE: true
